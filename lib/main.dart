@@ -4,6 +4,7 @@ import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:spaceshift/enemy.dart';
+import 'package:spaceshift/main_menu/main_menu_screen.dart';
 import 'package:spaceshift/player.dart';
 import 'package:flame/experimental.dart';
 
@@ -34,7 +35,12 @@ class SpaceShooterGame extends FlameGame
           return Enemy();
         },
         period: 1,
-        area: Rectangle.fromLTWH(0, 0, size.x, -Enemy.enemySize),
+        area: Rectangle.fromLTWH(
+          0,
+          0,
+          size.x,
+          -Enemy.enemySize,
+        ),
       ),
     );
   }
@@ -56,5 +62,10 @@ class SpaceShooterGame extends FlameGame
 }
 
 void main() {
-  runApp(GameWidget(game: SpaceShooterGame()));
+  runApp(MaterialApp(
+    routes: {
+      '/': (context) => const MainMenuScreen(),
+      '/game': (context) => GameWidget(game: SpaceShooterGame()),
+    },
+  ));
 }
