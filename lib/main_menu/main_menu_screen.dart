@@ -17,7 +17,7 @@ class MainMenuScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => GameWidget(game: SpaceShooterGame()),
+                  builder: (context) => GameWidget(game: SpaceShiftGame()),
                 ),
               );
             }),

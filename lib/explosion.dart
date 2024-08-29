@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:spaceshift/main.dart';
 
 class Explosion extends SpriteAnimationComponent
-    with HasGameReference<SpaceShooterGame> {
+    with HasGameReference<SpaceShiftGame> {
   Explosion({
     super.position,
   }) : super(
