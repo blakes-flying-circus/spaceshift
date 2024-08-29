@@ -44,3 +44,10 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+
+# for gh-pages
+/android
+/ios
+/linux
+/macos
+/windows
