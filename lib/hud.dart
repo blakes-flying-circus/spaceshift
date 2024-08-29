@@ -32,9 +32,9 @@ class Hud extends PositionComponent with HasGameReference<SpaceShiftGame> {
     add(
       TextComponent(
         text: 'SCORE',
-        position: Vector2(game.size.x - 100, 10),
+        position: Vector2(game.size.x - 40, 30),
         textRenderer: defaultRenderer,
-        anchor: Anchor.center,
+        anchor: Anchor.bottomRight,
       ),
     );
     _scoreTextComponent = TextComponent(
