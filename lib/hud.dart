@@ -28,7 +28,6 @@ class Hud extends PositionComponent with HasGameReference<SpaceShiftGame> {
     final scoreCountRenderer = TextPaint(
       style: textStyle.copyWith(fontSize: 55, fontWeight: FontWeight.bold),
     );
-    print(game.size.x);
 
     add(
       TextComponent(
