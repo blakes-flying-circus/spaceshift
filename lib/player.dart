@@ -1,9 +1,9 @@
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:spaceshift/bullet.dart';
 import 'package:spaceshift/main.dart';
 
-class Player extends SpriteAnimationComponent
-    with HasGameRef<SpaceShooterGame> {
+class Player extends SpriteAnimationComponent with HasGameRef<SpaceShiftGame> {
   late final SpawnComponent _bulletSpawner;
 
   Player()
@@ -40,6 +40,12 @@ class Player extends SpriteAnimationComponent
         );
       },
       autoStart: false,
+    );
+
+    add(
+      RectangleHitbox(
+        collisionType: CollisionType.passive,
+      ),
     );
 
     game.add(_bulletSpawner);

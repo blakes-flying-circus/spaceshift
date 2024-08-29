@@ -7,10 +7,13 @@ import 'package:spaceshift/enemy.dart';
 import 'package:spaceshift/main_menu/main_menu_screen.dart';
 import 'package:spaceshift/player.dart';
 import 'package:flame/experimental.dart';
+import 'package:spaceshift/hud.dart';
 
-class SpaceShooterGame extends FlameGame
-    with PanDetector, HasCollisionDetection {
+class SpaceShiftGame extends FlameGame with PanDetector, HasCollisionDetection {
   late Player player;
+
+  int score = 0;
+  int lives = 3;
 
   @override
   Future<void> onLoad() async {
@@ -24,6 +27,8 @@ class SpaceShooterGame extends FlameGame
       repeat: ImageRepeat.repeat,
       velocityMultiplierDelta: Vector2(0, 5),
     );
+
+    camera.viewport.add(Hud(position: Vector2(0, 30)));
     add(parallax);
 
     player = Player();
@@ -65,7 +70,7 @@ void main() {
   runApp(MaterialApp(
     routes: {
       '/': (context) => const MainMenuScreen(),
-      '/game': (context) => GameWidget(game: SpaceShooterGame()),
+      '/game': (context) => GameWidget(game: SpaceShiftGame()),
     },
   ));
 }

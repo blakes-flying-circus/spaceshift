@@ -3,9 +3,10 @@ import 'package:flame/components.dart';
 import 'package:spaceshift/bullet.dart';
 import 'package:spaceshift/explosion.dart';
 import 'package:spaceshift/main.dart';
+import 'package:spaceshift/player.dart';
 
 class Enemy extends SpriteAnimationComponent
-    with HasGameReference<SpaceShooterGame>, CollisionCallbacks {
+    with HasGameReference<SpaceShiftGame>, CollisionCallbacks {
   Enemy({
     super.position,
   }) : super(
@@ -42,16 +43,25 @@ class Enemy extends SpriteAnimationComponent
   }
 
   @override
-  void onCollisionStart(
+  Future<void> onCollisionStart(
     Set<Vector2> intersectionPoints,
     PositionComponent other,
-  ) {
+  ) async {
     super.onCollisionStart(intersectionPoints, other);
 
     if (other is Bullet) {
       removeFromParent();
       other.removeFromParent();
       game.add(Explosion(position: position));
+      game.score += 10;
+    } else if (other is Player) {
+      removeFromParent();
+      game.add(Explosion(position: position));
+      game.lives -= 1;
+      if (game.lives == 0) {
+        await Future.delayed(const Duration(milliseconds: 500));
+        game.pauseEngine();
+      }
     }
   }
 }
